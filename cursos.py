@@ -1,5 +1,3 @@
-from fastapi import HTTPException
-
 # cursos.py
 
 """
@@ -34,12 +32,37 @@ if __name__ == "__main__":
     print(listar_cursos())
 
 
+from fastapi import FastAPI, HTTPException
+
+app = FastAPI()
+
+# Função já existente (renomeei para seguir padrão snake_case)
+def obter_token_unidade() -> str:
+    # Seu código para obter token da unidade, exemplo:
+    url = f"{OM_BASE}/unidades/token/{UNIDADE_ID}"
+    r = requests.get(url, headers={"Authorization": f"Basic {BASIC_B64}"}, timeout=8)
+    if r.ok and r.json().get("status") == "true":
+        return r.json()["data"]["token"]
+    raise RuntimeError(f"Falha ao obter token da unidade: {r.status_code}")
+
 @app.get("/secure")
 async def renovar_token():
     try:
-        token = _obter_token_unidade()
+        token = obter_token_unidade()  # Renova o token
         _log("🔄 Token renovado com sucesso via /secure")
         return {"status": "ok", "token": token}
     except Exception as e:
         _log(f"❌ Falha ao renovar token: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Erro ao renovar token: {str(e)}")
+
+@app.get("/token")
+async def consultar_token():
+    try:
+        # Apenas consulta o token atual, pode ser cacheado se quiser otimizar
+        token = obter_token_unidade()
+        _log("ℹ️ Consulta do token via /token")
+        return {"status": "ok", "token": token}
+    except Exception as e:
+        _log(f"❌ Falha ao consultar token: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro ao consultar token: {str(e)}")
+
