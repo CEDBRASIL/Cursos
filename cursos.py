@@ -10,6 +10,8 @@ Use este dicionário para vincular cursos e disciplinas nas matrículas automát
 # Consulta dos tokens
 BASIC_B64 = os.getenv("BASIC_B64")
 UNIDADE_ID = os.getenv("UNIDADE_ID")
+OM_BASE = os.getenv("OM_BASE")
+
 
 CURSOS_OM = {
     "Excel PRO": [161, 197, 201],
