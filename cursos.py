@@ -1,6 +1,5 @@
 # cursos.py
 import os
-import matricular 
 import requests
 
 """
