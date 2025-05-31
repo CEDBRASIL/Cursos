@@ -1,4 +1,5 @@
 # cursos.py
+from datetime import datetime
 import os
 import requests
 
@@ -74,3 +75,11 @@ async def consultar_token():
         _log(f"❌ Falha ao consultar token: {str(e)}")
         raise HTTPException(status_code=500, detail=f"Erro ao consultar token: {str(e)}")
 
+
+
+def _log(msg: str):
+    agora = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    print(f"[{agora}] {msg}")
+
+# Alias alternativo, se quiser usar `log()` também
+log = _log
