@@ -1,5 +1,6 @@
 # cursos.py
 import os
+import matricular 
 """
 Mapeamento dos cursos e seus respectivos IDs de disciplinas na Ouro Moderno (OM).
 
