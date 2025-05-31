@@ -1,5 +1,5 @@
 # cursos.py
-
+import os
 """
 Mapeamento dos cursos e seus respectivos IDs de disciplinas na Ouro Moderno (OM).
 
@@ -7,8 +7,6 @@ Use este dicionário para vincular cursos e disciplinas nas matrículas automát
 """
 
 # Consulta dos tokens
-
-OM_BASE = os.getenv("OM_BASE")
 BASIC_B64 = os.getenv("BASIC_B64")
 UNIDADE_ID = os.getenv("UNIDADE_ID")
 
