@@ -58,7 +58,7 @@ def obter_token_unidade() -> str:
 async def renovar_token():
     try:
         token = obter_token_unidade()  # Renova o token
-        _log("🔄 Token renovado com sucesso via /secure")
+        log("🔄 Token renovado com sucesso via /secure")
         return {"status": "ok", "token": token}
     except Exception as e:
         _log(f"❌ Falha ao renovar token: {str(e)}")
